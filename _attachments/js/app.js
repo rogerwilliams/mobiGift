@@ -1,6 +1,53 @@
 // This is a simple app that demonstrates how to use the Backbone.js couch-connector.
 // It is sort of a real time chat with private messages support.
 
+// Sets the require.js configuration for your application.
+require.config( {
+
+      // 3rd party script alias names (Easier to type "jquery" than "libs/jquery-1.8.2.min")
+      paths: {
+
+            // Core Libraries
+            "jquery": "libs/jquery",
+            "underscore": "libs/underscore",
+            "backbone": "libs/backbone",
+            "jquery-couch":"libs/jquery.couch",
+            "jquery-couchLogin":"libs/jquery.couchLogin.min",
+            "backbone-couchdb": "libs/backbone-couchdb"
+      },
+
+      // Sets the configuration for your third party scripts that are not AMD compatible
+      shim: {
+
+            "backbone": {
+                  "deps": [ "underscore", "jquery" ],
+                  "exports": "Backbone"  //attaches "Backbone" to the window object
+            },
+           "jquery-couch": {
+                  "deps": [  "jquery" ],
+                  "exports": "jqueryCouch"  //attaches "Backbone" to the window object
+            },
+            "jquery-couchLogin": {
+                  "deps": [  "jquery-couch" ],
+                  "exports": "jqueryCouchLogin"  //attaches "Backbone" to the window object
+            },
+            "backbone-couchdb": {
+                  "deps": [ "underscore" ,"jquery-couch","backbone"],
+                  "exports": "BackboneCouchdb"  //attaches "Backbone" to the window object
+            },
+            "underscore": {
+                  "deps": ["jquery"],
+                  "exports": "_"  //attaches "_" to the window object
+            }
+
+      } // end Shim Configuration
+
+} );
+
+// Includes File Dependencies
+require([ "jquery", "underscore","backbone","jquery-couch","backbone-couchdb","jquery-couchLogin"], 
+    function( $, _, Backbone, jqueryCouch,BackboneCouchdb,jqueryCouchLogin) {
+
 $(function(){
   // Fill this with your database information.
   // `ddoc_name` is the name of your couchapp project.
@@ -232,7 +279,7 @@ $(function(){
       _.bindAll(this, 'remove_me');
       
       // When the session gets destroyed, the row will be destroyed too
-      this.model.bind("remove", this.remove_me)
+      this.model.bind("remove", this.remove_me);
     },
   
     render : function(){
@@ -252,7 +299,7 @@ $(function(){
       that = this;
       this.el.fadeOut(function(){
         that.el.remove();
-      })
+      });
     }
   });
   
@@ -330,4 +377,5 @@ $(function(){
     new App();
 
   }, 100);
+});
 });
