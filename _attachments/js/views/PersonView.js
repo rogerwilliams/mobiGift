@@ -20,9 +20,13 @@ define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, Per
 
             // Sets the view's template property
             this.template = _.template( $( "script#personItems" ).html(), { "collection": this.collection } );
+            
+            var ul = this.$el.find("ul");
 
             // Renders the view's template inside of the current listview element
-            this.$el.find("ul").html(this.template);
+            ul.append(this.template);
+//            ul.trigger('create');
+            ul.listview('refresh');
 
             // Maintains chainability
             return this;
