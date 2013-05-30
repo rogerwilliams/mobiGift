@@ -2,21 +2,17 @@
 <html>
   <head>
     <title>My New CouchApp</title>
-    <link rel="stylesheet" href="style/main.css" type="text/css">
+    <link rel="stylesheet" href="style/jquery.mobile-1.3.0.min.css" />
     <script src="js/libs/require.js" data-main="js/app"></script>
   </head>
   <body>
     
     <p id="login"></p>
     
-    <div id="content">
-      <ul id="userlist">
-      </ul>
-      <ul id="messages">
+    <div id="people">
+      <ul >
       </ul>
     </div>
-    
-    
     
     <div id="input">
         <label for="name">Name: </label><span id="name"></span>
@@ -30,6 +26,18 @@
 
     <script type="text/template" id="private-entry-template">
         <span class="from_content">{{from}} to {{to}}: </span><span class="text_content">{{message}}</span>
+    </script>
+    <!-- Underscore Template that is used to display all of the Category Models -->
+    <script id="personItems" type="text/template">
+    
+          <% _.each( collection.toJSON(), function( person, id ) { %>
+    
+                <li class="ui-li ui-li-static ui-btn-up-c ui-corner-top">
+                      <%= person.firstName %>
+                </li>
+    
+          <% }); %>
+    
     </script>
   </body>
   <!-- <script type="text/javascript" src="/_utils/script/jquery.js"></script> -->
