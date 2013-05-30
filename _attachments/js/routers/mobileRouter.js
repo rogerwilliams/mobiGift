@@ -15,8 +15,10 @@ define([ "jquery","backbone", "../models/PersonModel", "../collections/PersonCol
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
-            this.peopleView.collection.fetch();
-
+            var deferred = this.peopleView.collection.fetch();
+            deferred.done(function () {
+                $.mobile.changePage( "#peoplePage", { reverse: false, changeHash: false } );
+            });
         },
 
         // Backbone.js Routes
