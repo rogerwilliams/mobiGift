@@ -36,33 +36,24 @@ require.config( {
                   "deps": [ "underscore" ,"jquery-couch","backbone"],
                   "exports": "BackboneCouchdb"  //attaches "BackboneCouchdb" to the window object
             }
-//            ,
-//            "underscore": {
-//                  "deps": ["jquery"],
-//                  "exports": "_"  //attaches "_" to the window object
-//            }
 
       } // end Shim Configuration
 
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "routers/mobileRouter" ], function( $, Backbone, Mobile ) {
-
-    $( document ).on( "mobileinit",
-		// Set up the "mobileinit" handler before requiring jQuery Mobile's module
-		function() {
-			// Prevents all anchor click handling including the addition of active button state and alternate link bluring.
-			$.mobile.linkBindingEnabled = false;
-
-			// Disabling this will prevent jQuery Mobile from handling hash changes
-			$.mobile.hashListeningEnabled = false;
-		}
-	)
+require([ "jquery", "backbone", "views/LoginView", 
+    "views/PersonView", "collections/PersonCollection"], function( $, Backbone, 
+        LoginView, PersonView, PersonCollection) {
 
 	require( [ "jquerymobile" ], function() {
-		// Instantiates a new Backbone.js Mobile Router
-		this.router = new Mobile();
+        window.mobiGift = {};
+        window.mobiGift.collections = {};
+        window.mobiGift.views = {};
+        
+        window.mobiGift.views.loginView = new LoginView();
+        window.mobiGift.collections.personCollection = new PersonCollection( [] , {  } );
+        window.mobiGift.views.peopleView = new PersonView( { el: "#people", collection: window.mobiGift.collections.personCollection} );
 	});
 } );
 

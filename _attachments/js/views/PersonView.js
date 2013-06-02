@@ -24,7 +24,7 @@ define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, Per
             var ul = this.$el.find("ul");
 
             // Renders the view's template inside of the current listview element
-            ul.append(this.template);
+            ul.html(this.template);
 //            ul.trigger('create');
             ul.listview('refresh');
 

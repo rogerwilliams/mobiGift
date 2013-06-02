@@ -17,23 +17,31 @@
                     Login
                 </h3>
             </div>
+            <div  data-role="content">
+                <div data-role="fieldcontain">
+                    <label for="userid">Userid:</label>
+                    <input type="text" name="userid" id="userid" value="" />
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" value="" />
+                </div>
+                <a  id="loginButton", data-role="button" href="#peoplePage">
+                    Login
+                </a>
+            </div>
         </div>
         <div data-role="page" id="peoplePage">
             <div data-theme="a" data-role="header">
                 <h3>
                     People
                 </h3>
+                <a class="ui-btn-right" href="#editPerson" data-role="button"
+                    data-icon="plus" data-iconpos="notext" data-transition="flip"
+                    data-theme="c" data-inline="true" >
+                    Plus
+                </a>
             </div>
             <div id="people" data-role="content">
                  <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
-                        Divider
-                    </li>
-                    <li data-theme="c">
-                        <a href="#" data-transition="slide">
-                            fred
-                        </a>
-                    </li>
                  </ul>
             </div>
             <script id="personItems" type="text/template">
@@ -50,7 +58,8 @@
         </div>
         <div data-role="page" id="editPerson">
             <div data-theme="a" data-role="header">
-                <a id="editPersonCancel" data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">Cancel</a>
+                <a class="back id="editPersonCancel" data-role="button" 
+                    data-icon="arrow-l" data-iconpos="left" data-rel="back">Cancel</a>
                 <h3>
                     Person
                 </h3>
