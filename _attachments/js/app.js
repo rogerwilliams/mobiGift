@@ -43,8 +43,8 @@ require.config( {
 
 // Includes File Dependencies
 require([ "jquery", "backbone", "views/LoginView", 
-    "views/PersonView", "collections/PersonCollection"], function( $, Backbone, 
-        LoginView, PersonView, PersonCollection) {
+    "views/PersonView", "collections/PersonCollection", "views/EditPersonView"], function( $, Backbone, 
+        LoginView, PersonView, PersonCollection, EditPersonView) {
 
 	require( [ "jquerymobile" ], function() {
         window.mobiGift = {};
@@ -53,6 +53,7 @@ require([ "jquery", "backbone", "views/LoginView",
         
         window.mobiGift.views.loginView = new LoginView();
         window.mobiGift.collections.personCollection = new PersonCollection( [] , {  } );
+        window.mobiGift.views.editPersonView = new EditPersonView( { el: "#editPersonElement", collection: window.mobiGift.collections.personCollection} );
         window.mobiGift.views.peopleView = new PersonView( { el: "#people", collection: window.mobiGift.collections.personCollection} );
 	});
 } );

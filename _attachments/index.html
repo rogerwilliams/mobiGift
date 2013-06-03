@@ -34,7 +34,7 @@
                 <h3>
                     People
                 </h3>
-                <a class="ui-btn-right" href="#editPerson" data-role="button"
+                <a id="addPersonButton" class="ui-btn-right" href="#editPerson" data-role="button"
                     data-icon="plus" data-iconpos="notext" data-transition="flip"
                     data-theme="c" data-inline="true" >
                     Plus
@@ -45,30 +45,26 @@
                  </ul>
             </div>
             <script id="personItems" type="text/template">
-                <% _.each( collection.toJSON(), function( person, id ) { %>
-    
                     <li data-theme="c">
                         <a href="#" data-transition="slide">
                             <%= person.firstName %>
                         </a>
                     </li>
-    
-                <% }); %>
           </script>
         </div>
         <div data-role="page" id="editPerson">
             <div data-theme="a" data-role="header">
                 <a class="back id="editPersonCancel" data-role="button" 
                     data-icon="arrow-l" data-iconpos="left" data-rel="back">Cancel</a>
-                <h3>
-                    Person
-                </h3>
-                <button id="save" data-theme="b" >Save</button>
+                <h3>Person</h3>
+                <a class="saveButton" data-role="button" data-theme="b" data-rel="back">Save</a>
             </div>
             <div data-role="content">
                 <fieldset>
-                    <label for="text-basic" class="ui-input-text">Name</label>
-                    <input type="text" name="text-basic" id="personName" value="">
+                    <label for="text-basic" class="ui-input-text ">First name</label>
+                    <input id="epPersonFirstName" type="text" name="text-basic" value="">
+                    <label for="text-basic" class="ui-input-text ">Last name</label>
+                    <input id="epPersonLastName" type="text" name="text-basic" value="">
                 </fieldset>
             </div>
             <div data-theme="a" data-role="footer" data-position="fixed">
