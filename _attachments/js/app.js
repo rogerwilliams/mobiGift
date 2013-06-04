@@ -42,10 +42,17 @@ require.config( {
 } );
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "views/LoginView", 
-    "views/PersonView", "collections/PersonCollection", "views/EditPersonView"], function( $, Backbone, 
+require([ "jquery", "backbone", "backbone-couchdb", "views/LoginView", 
+    "views/PersonView", "collections/PersonCollection", "views/EditPersonView"] , function( $, Backbone, BackboneCouchdb,
         LoginView, PersonView, PersonCollection, EditPersonView) {
-
+    
+    Backbone.couch_connector.config.db_name = "mobigift";
+    Backbone.couch_connector.config.ddoc_name = "backbone_example";
+  
+  // If set to true, the connector will listen to the changes feed
+  // and will provide your models with real time remote updates.
+  // But in this case we enable the changes feed for each Collection on our own.
+    Backbone.couch_connector.config.global_changes = false;
 	require( [ "jquerymobile" ], function() {
         window.mobiGift = {};
         window.mobiGift.collections = {};

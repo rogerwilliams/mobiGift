@@ -16,7 +16,7 @@ define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, Per
         initialize: function() {
             $("#editPerson .saveButton").on("click",function(){
                 var person = new PersonModel();
-                window.mobiGift.collections.personCollection.add({
+                window.mobiGift.collections.personCollection.create({
                     firstName:$("#epPersonFirstName").val(),
                     lastName:$("#epPersonLastName").val()
                     });

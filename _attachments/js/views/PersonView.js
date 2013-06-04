@@ -11,15 +11,15 @@ define([ "jquery", "backbone","underscore","models/PersonModel" ], function( $, 
         initialize: function() {
     
             // The render method is called when Person Models are added to the Collection
-            this.collection.on( "added", this.render, this );
-            this.collection.on( "add", this.render, this );
+            this.collection.on( "reset", this.render, this );
+            this.collection.on( "add", this.add, this );
             $("#addPersonButton").on("click",function(){
                 window.mobiGift.views.editPersonView.clear();
             });
 
         },
         add: function(model,collection,options){
-            var html = _.template($("script#personItems").html(), {"person": model} );
+            var html = _.template($("script#personItems").html(), {"person": model.attributes} );
             var ul = this.$el.find("ul");
             ul.append(html);
             ul.listview('refresh');
