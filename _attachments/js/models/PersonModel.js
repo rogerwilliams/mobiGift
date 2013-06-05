@@ -2,7 +2,7 @@
 // ==============
 
 // Includes file dependencies
-define([ "jquery", "backbone" ], function( $, Backbone ) {
+define([ "jquery", "backbone", "backbone-couchdb" ], function( $, Backbone, BackboneCouchdb) {
 
     // The Model constructor
     var Model = Backbone.Model.extend( {

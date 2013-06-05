@@ -16,10 +16,14 @@ define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, Per
         initialize: function() {
             $("#editPerson .saveButton").on("click",function(){
                 var person = new PersonModel();
-                window.mobiGift.collections.personCollection.create({
+                var newPerson = 
+                    new PersonModel({
+                    _id:$("#epPersonFirstName").val() + $("#epPersonLastName").val(),
                     firstName:$("#epPersonFirstName").val(),
                     lastName:$("#epPersonLastName").val()
                     });
+                window.mobiGift.collections.personCollection.create(
+                    newPerson);
             });
 
         },
