@@ -2,7 +2,7 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, PersonModel ) {
+define([ "jquery", "backbone","models/PersonModel", "Utils" ], function( $, Backbone, PersonModel ,Utils) {
 
     // Extends Backbone.View
     var EditPersonView = Backbone.View.extend( {
@@ -18,7 +18,7 @@ define([ "jquery", "backbone","models/PersonModel" ], function( $, Backbone, Per
                 var person = new PersonModel();
                 var newPerson = 
                     new PersonModel({
-                    _id:$("#epPersonFirstName").val() + $("#epPersonLastName").val(),
+                    _id:Utils.guid(),
                     firstName:$("#epPersonFirstName").val(),
                     lastName:$("#epPersonLastName").val()
                     });
