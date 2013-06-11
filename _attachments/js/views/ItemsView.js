@@ -1,31 +1,28 @@
-// Person View
+// Item View
 // =============
 
 // Includes file dependencies
-define([ "jquery", "jquerymobile","backbone","underscore","models/PersonModel" ], 
-        function( $, jquerymobile, Backbone, _, PersonModel ) {
+define([ "jquery", "backbone","underscore","models/ItemModel" ], function( $, Backbone, _, ItemModel ) {
     
-    var makeLink =  function( person ) { 
-                var link = $(_.template($("script#personItems").html(), {"person": person} ));
+    var makeLink =  function( item ) { 
+                var link = $(_.template($("script#itemItems").html(), {"item": item} ));
                 link.click(function(e){
-                    $("#itemListHeading").html("Items for " + person.firstName);
-                    window.mobiGift.collections.itemCollection.personId = person._id;
-                    window.mobiGift.collections.itemCollection.fetch({key:person._id});
+                    alert(item._id);
                 });
                 link.appendTo(this);
     };
 
     // Extends Backbone.View
-    var PersonView = Backbone.View.extend( {
+    var ItemView = Backbone.View.extend( {
 
         // The View Constructor
         initialize: function() {
     
-            // The render method is called when Person Models are added to the Collection
+            // The render method is called when Item Models are added to the Collection
             this.collection.on( "reset", this.render, this );
             this.collection.on( "add", this.add, this );
-            $("#addPersonButton").on("click",function(){
-                window.mobiGift.views.editPersonView.clear();
+            $("#addItemButton").on("click",function(){
+                window.mobiGift.views.editItemView.clear();
             });
 
         },
@@ -36,9 +33,10 @@ define([ "jquery", "jquerymobile","backbone","underscore","models/PersonModel" ]
             ul.listview('refresh');
         },
         
-        // Renders all of the Person models on the UI
+        // Renders all of the Item models on the UI
         render: function() {
             var ul = this.$el.find("ul");
+            ul.empty();
             _.each(this.collection.toJSON(), makeLink, ul);
 
             // Renders the view's template inside of the current listview element
@@ -51,6 +49,6 @@ define([ "jquery", "jquerymobile","backbone","underscore","models/PersonModel" ]
     } );
 
     // Returns the View class
-    return PersonView;
+    return ItemView;
 
 } );

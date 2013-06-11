@@ -15,7 +15,6 @@ define([ "jquery", "backbone","models/PersonModel", "Utils" ], function( $, Back
         // The View Constructor
         initialize: function() {
             $("#editPerson .saveButton").on("click",function(){
-                var person = new PersonModel();
                 var newPerson = 
                     new PersonModel({
                     _id:Utils.guid(),

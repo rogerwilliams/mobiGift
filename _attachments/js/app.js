@@ -43,8 +43,10 @@ require.config( {
 
 // Includes File Dependencies
 require([ "jquery", "backbone", "backbone-couchdb", "views/LoginView", 
-    "views/PersonView", "collections/PersonCollection", "views/EditPersonView"] , function( $, Backbone, BackboneCouchdb,
-        LoginView, PersonView, PersonCollection, EditPersonView) {
+    "views/PersonView", "collections/PersonCollection", "views/EditPersonView",
+    "views/EditItemView", "views/ItemsView", "collections/ItemCollection"] , function( $, Backbone, BackboneCouchdb,
+        LoginView, PersonView, PersonCollection, EditPersonView,
+        EditItemView, ItemsView,ItemCollection) {
     
     Backbone.couch_connector.config.db_name = "mobigift";
     Backbone.couch_connector.config.ddoc_name = "backbone_example";
@@ -60,8 +62,11 @@ require([ "jquery", "backbone", "backbone-couchdb", "views/LoginView",
         
         window.mobiGift.views.loginView = new LoginView();
         window.mobiGift.collections.personCollection = new PersonCollection( [] , {  } );
+        window.mobiGift.collections.itemCollection = new ItemCollection( [] , {  } );
         window.mobiGift.views.editPersonView = new EditPersonView( { el: "#editPersonElement", collection: window.mobiGift.collections.personCollection} );
         window.mobiGift.views.peopleView = new PersonView( { el: "#people", collection: window.mobiGift.collections.personCollection} );
+        window.mobiGift.views.itemsView = new ItemsView( { el: "#items", collection: window.mobiGift.collections.itemCollection} );
+        window.mobiGift.views.editItemView = new EditItemView( { el: "#editItemElement", collection: window.mobiGift.collections.itemCollection} );
 	});
 } );
 

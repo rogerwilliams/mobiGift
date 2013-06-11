@@ -76,38 +76,94 @@
         <div data-role="page" id="items">
             <div data-theme="a" data-role="header">
                 <a  data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">People</a>
-                <h3>
+                <h3 id="itemListHeading">
                     Items for Roger
                 </h3>
+                <a id="addItemButton" class="ui-btn-right" href="#editItem" data-role="button"
+                    data-icon="plus" data-iconpos="notext" data-transition="flip"
+                    data-theme="c" data-inline="true" >
+                    Plus
+                </a>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                <ul id="itemListView" data-role="listview" data-divider-theme="b" data-inset="true">
                 <!--
                     <li data-role="list-divider" role="heading">
                         Divider
                     </li>
                 -->
-                    <li data-theme="c">
-                        <a href="item.html" data-transition="slide">
-                            Item 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="item.html" data-transition="slide">
-                            Item 2
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="item.html" data-transition="slide">
-                            Item 3
-                        </a>
-                    </li>
                 </ul>
             </div>
             <div data-theme="a" data-role="footer" data-position="fixed">
                 <h3>
                     Footer
                 </h3>
+            </div>
+            <script id="itemItems" type="text/template">
+                    <li data-theme="c">
+                        <a href="#item" data-transition="slide">
+                            <%= item.itemName %>
+                        </a>
+                    </li>
+          </script>
+        </div>
+        <div data-role="page" id="item">
+            <div data-theme="a" data-role="header">
+                <a  data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">Items</a>
+                <h3>
+                    Item
+                </h3>
+            </div>
+            <div data-role="content">
+                Item 1
+                <br/>
+                <br/>
+                Item 1 description
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
+                    <li><a href="index.html">
+                        <h2>Stephen Weber</h2>
+                        <p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+                        <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+                        <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+                    </a></li>
+                    <li><a href="index.html">
+                        <h2>jQuery Team</h2>
+                        <p><strong>Boston Conference Planning</strong></p>
+                        <p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+                        <p class="ui-li-aside"><strong>9:18</strong>AM</p>
+                    </a></li>
+                    <li data-role="list-divider">Thursday, October 7, 2010 <span class="ui-li-count">1</span></li>
+                    <li><a href="index.html">
+                        <h2>Avery Walker</h2>
+                        <p><strong>Re: Dinner Tonight</strong></p>
+                        <p>Sure, let's plan on meeting at Highland Kitchen at 8:00 tonight. Can't wait! </p>
+                        <p class="ui-li-aside"><strong>4:48</strong>PM</p>
+                    </a></li>
+                </ul>    
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed" style="text-align: center;">
+                <a href="#" data-inline="true" data-role="button" data-inline="true" >Take</a>
+                <a href="#" data-inline="true" data-role="button" data-inline="true" >Return</a>
+            </div>
+        </div>
+        <div data-role="page" id="editItem">
+            <div data-theme="a" data-role="header">
+                <a  data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">Items</a>
+                <h3>
+                    Item
+                </h3>
+                <a class="saveButton" data-role="button" data-theme="b" data-rel="back">Save</a>
+            </div>
+            <div data-role="content">
+                <fieldset>
+                    <label for="text-basic" class="ui-input-text ">Name</label>
+                    <input id="eiItemName" type="text" name="text-basic" value="">
+                </fieldset>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed" style="text-align: center;">
+                <a href="#" data-inline="true" data-role="button" data-inline="true" >Take</a>
+                <a href="#" data-inline="true" data-role="button" data-inline="true" >Return</a>
             </div>
         </div>
     </body>
