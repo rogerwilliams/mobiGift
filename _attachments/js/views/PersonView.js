@@ -3,6 +3,13 @@
 
 // Includes file dependencies
 define([ "jquery", "backbone","underscore","models/PersonModel" ], function( $, Backbone, _, PersonModel ) {
+    var makeLink =  function( person ) { 
+                var link = $(_.template($("script#personItems").html(), {"person": person} ));
+                link.click(function(e){
+                    alert(person._id);
+                });
+                link.appendTo(this);
+    };
 
     // Extends Backbone.View
     var PersonView = Backbone.View.extend( {
@@ -19,26 +26,20 @@ define([ "jquery", "backbone","underscore","models/PersonModel" ], function( $, 
 
         },
         add: function(model,collection,options){
-            var html = _.template($("script#personItems").html(), {"person": model.attributes} );
             var ul = this.$el.find("ul");
-            ul.append(html);
+            makeLink.call(ul,model.attributes);
             ul.listview('refresh');
         },
         // Renders all of the Person models on the UI
         render: function() {
-            var html = "";
-            _.each(this.collection.toJSON(), function( person, id ) { 
-                html += _.template($("script#personItems").html(), {"person": person} );
-            });
             var ul = this.$el.find("ul");
+            _.each(this.collection.toJSON(), makeLink, ul);
 
             // Renders the view's template inside of the current listview element
-            ul.html(html);
             ul.listview('refresh');
 
             // Maintains chainability
             return this;
-
         }
 
     } );

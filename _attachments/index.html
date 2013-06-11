@@ -46,7 +46,7 @@
             </div>
             <script id="personItems" type="text/template">
                     <li data-theme="c">
-                        <a href="#" data-transition="slide">
+                        <a href="#items" data-transition="slide" data-mobigift-personId="<%=person._id%>">
                             <%= person.firstName %>
                         </a>
                     </li>
@@ -66,6 +66,43 @@
                     <label for="text-basic" class="ui-input-text ">Last name</label>
                     <input id="epPersonLastName" type="text" name="text-basic" value="">
                 </fieldset>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>
+                    Footer
+                </h3>
+            </div>
+        </div>
+        <div data-role="page" id="items">
+            <div data-theme="a" data-role="header">
+                <a  data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">People</a>
+                <h3>
+                    Items for Roger
+                </h3>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                <!--
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                -->
+                    <li data-theme="c">
+                        <a href="item.html" data-transition="slide">
+                            Item 1
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="item.html" data-transition="slide">
+                            Item 2
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="item.html" data-transition="slide">
+                            Item 3
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div data-theme="a" data-role="footer" data-position="fixed">
                 <h3>
