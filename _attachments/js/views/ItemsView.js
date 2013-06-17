@@ -7,11 +7,14 @@ define([ "jquery", "backbone","underscore","models/ItemModel" ], function( $, Ba
     var makeLink =  function( item ) { 
                 var link = $($.trim(_.template($("script#itemItems").html(), {"item": item} )));
                 var editButton = link.find(".itemEditButton");
+                var self = this;
                 editButton.click(function(e){
                     alert("edit "+ item._id);
                 });
                 link.find(".itemTakeButton").click(function(e){
-                    alert("take " + item._id);
+                    var model = window.mobiGift.collections.itemCollection.findWhere({_id:item._id});
+                    model.set({taken:true});
+                    model.save();
                 });
                 link.appendTo(this);
     };
@@ -36,6 +39,7 @@ define([ "jquery", "backbone","underscore","models/ItemModel" ], function( $, Ba
             makeLink.call(ul,model.attributes);
             $("#itemtable").table("refresh");
             $(".itemListButton").buttonMarkup("refresh");
+            this.$el.find(".ui-table-columntoggle-btn").hide();
         },
         
         // Renders all of the Item models on the UI
