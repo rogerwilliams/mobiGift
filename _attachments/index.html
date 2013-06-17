@@ -6,7 +6,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <title>My New CouchApp</title>
-        <link rel="stylesheet" href="style/jquery.mobile-1.3.0.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
         <script src="js/libs/require.js" data-main="js/app"></script>
     </head>
     <body>
@@ -35,7 +35,7 @@
                     People
                 </h3>
                 <a id="addPersonButton" class="ui-btn-right" href="#editPerson" data-role="button"
-                    data-icon="plus" data-iconpos="notext" data-transition="flip"
+                    data-icon="plus" data-iconpos="notext" data-rel="dialog" data-transition="pop"
                     data-theme="c" data-inline="true" >
                     Plus
                 </a>
@@ -45,17 +45,15 @@
                  </ul>
             </div>
             <script id="personItems" type="text/template">
-                    <li data-theme="c">
-                        <a href="#items" data-transition="slide" data-mobigift-personId="<%=person._id%>">
-                            <%= person.firstName %>
-                        </a>
-                    </li>
-          </script>
+                <li data-theme='c'>
+                    <a href='#items' data-transition='slide' >
+                        <%= person.firstName %> 
+                    </a> 
+                </li>
+            </script>
         </div>
         <div data-role="page" id="editPerson">
             <div data-theme="a" data-role="header">
-                <a class="back id="editPersonCancel" data-role="button" 
-                    data-icon="arrow-l" data-iconpos="left" data-rel="back">Cancel</a>
                 <h3>Person</h3>
                 <a class="saveButton" data-role="button" data-theme="b" data-rel="back">Save</a>
             </div>
@@ -80,19 +78,22 @@
                     Items for Roger
                 </h3>
                 <a id="addItemButton" class="ui-btn-right" href="#editItem" data-role="button"
-                    data-icon="plus" data-iconpos="notext" data-transition="flip"
+                    data-icon="plus" data-iconpos="notext" data-rel="dialog" data-transition="pop"
                     data-theme="c" data-inline="true" >
                     Plus
                 </a>
             </div>
             <div data-role="content">
-                <ul id="itemListView" data-role="listview" data-divider-theme="b" data-inset="true">
-                <!--
-                    <li data-role="list-divider" role="heading">
-                        Divider
-                    </li>
-                -->
-                </ul>
+                <table data-role="table" id="itemtable" data-mode="columntoggle">
+
+          			<tbody>
+                      <tr>
+                  		<th><h4><%= item.itemName %></h4></th>
+            			<td><a class="itemListButton itemTakeButton" href="#" data-role="button">Take</a></td>
+          				<td><a class="itemListButton itemEditButton" href="#" data-role="button">Edit</a></td>
+    			       </tr>
+            		</tbody>
+                </table>
             </div>
             <div data-theme="a" data-role="footer" data-position="fixed">
                 <h3>
@@ -100,11 +101,11 @@
                 </h3>
             </div>
             <script id="itemItems" type="text/template">
-                    <li data-theme="c">
-                        <a href="#item" data-transition="slide">
-                            <%= item.itemName %>
-                        </a>
-                    </li>
+                <tr>
+          			<td><h4><%= item.itemName %></h4></td>
+        			<td><a class="itemListButton itemTakeButton" href="#" data-role="button">Take</a></td>
+      				<td><a class="itemListButton itemEditButton" href="#" data-role="button">Edit</a></td>
+    			</tr>
           </script>
         </div>
         <div data-role="page" id="item">
@@ -149,7 +150,6 @@
         </div>
         <div data-role="page" id="editItem">
             <div data-theme="a" data-role="header">
-                <a  data-role="button" data-icon="arrow-l" data-iconpos="left" data-rel="back">Items</a>
                 <h3>
                     Item
                 </h3>
@@ -160,10 +160,6 @@
                     <label for="text-basic" class="ui-input-text ">Name</label>
                     <input id="eiItemName" type="text" name="text-basic" value="">
                 </fieldset>
-            </div>
-            <div data-theme="a" data-role="footer" data-position="fixed" style="text-align: center;">
-                <a href="#" data-inline="true" data-role="button" data-inline="true" >Take</a>
-                <a href="#" data-inline="true" data-role="button" data-inline="true" >Return</a>
             </div>
         </div>
     </body>

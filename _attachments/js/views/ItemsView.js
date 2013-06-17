@@ -5,9 +5,13 @@
 define([ "jquery", "backbone","underscore","models/ItemModel" ], function( $, Backbone, _, ItemModel ) {
     
     var makeLink =  function( item ) { 
-                var link = $(_.template($("script#itemItems").html(), {"item": item} ));
-                link.click(function(e){
-                    alert(item._id);
+                var link = $($.trim(_.template($("script#itemItems").html(), {"item": item} )));
+                var editButton = link.find(".itemEditButton");
+                editButton.click(function(e){
+                    alert("edit "+ item._id);
+                });
+                link.find(".itemTakeButton").click(function(e){
+                    alert("take " + item._id);
                 });
                 link.appendTo(this);
     };
@@ -28,19 +32,23 @@ define([ "jquery", "backbone","underscore","models/ItemModel" ], function( $, Ba
         },
         
         add: function(model,collection,options){
-            var ul = this.$el.find("ul");
+            var ul = this.$el.find("tbody");
             makeLink.call(ul,model.attributes);
-            ul.listview('refresh');
+            $("#itemtable").table("refresh");
+            $(".itemListButton").buttonMarkup("refresh");
         },
         
         // Renders all of the Item models on the UI
         render: function() {
-            var ul = this.$el.find("ul");
+            var ul = this.$el.find("tbody");
             ul.empty();
             _.each(this.collection.toJSON(), makeLink, ul);
 
             // Renders the view's template inside of the current listview element
-            ul.listview('refresh');
+            var theTable = $("#itemtable");
+            theTable.table("refresh");
+            $(".itemListButton").buttonMarkup("refresh");
+            this.$el.find(".ui-table-columntoggle-btn").hide();
 
             // Maintains chainability
             return this;

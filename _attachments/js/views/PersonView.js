@@ -6,7 +6,8 @@ define([ "jquery", "jquerymobile","backbone","underscore","models/PersonModel" ]
         function( $, jquerymobile, Backbone, _, PersonModel ) {
     
     var makeLink =  function( person ) { 
-                var link = $(_.template($("script#personItems").html(), {"person": person} ));
+                var template = $("script#personItems").html();
+                var link = $($.trim(_.template(template, {"person": person}) ));
                 link.click(function(e){
                     $("#itemListHeading").html("Items for " + person.firstName);
                     window.mobiGift.collections.itemCollection.personId = person._id;
